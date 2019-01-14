@@ -1,5 +1,0 @@
-#!/bin/bash
-echo `date +'%F %T'` msg >> cron.log
-git commit -am "`date +'%F %T'` reyes"
-git push
-
