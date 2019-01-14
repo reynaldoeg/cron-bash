@@ -1,0 +1,3 @@
+#!/bin/bash
+echo `date +'%F %T'` msg >> cron.log
+
