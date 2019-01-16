@@ -6,20 +6,41 @@ Ejemplo de programa en bash que se ejecuta cada x minutos y hace un push automá
 
 ## Archivo bash
 
-
 ```
 #!/bin/bash
-echo `date +'%F %T'` msg >> /home/reynaldoeg/Documents/cron-bash/cron.log
+echo `date +'%F %T'` >> /home/reynaldoeg/Documents/cron-bash/cron.log
 cd /home/reynaldoeg/Documents/cron-bash/
-git commit -am "`date +'%F %T'` reyes"
+git commit -am "`date +'%F %T'`"
 git push
 ```
 
+La primera línea indica al sistema que programa usar para ejecutar el archivo.
+
+```
+#!/bin/bash
+```
+La segunda  línea imprime la fecha (date) en formato aaaa-mm-ddd hh:mm:ss (2019-01-16 10:45:01) y la envía al archivo cron.log; el doble signo de mayor que ( >> ) imprime la línea al final del archivo conservando el contenido existente, a diferencia del signo mayor que sencillo ( > ) que borra todo el contenido del archivo.
+```
+echo `date +'%F %T'` >> /home/reynaldoeg/Documents/cron-bash/cron.log
+```
+La siguiente línea entra a la carpeta del proyecto que está en github.
+```
+cd /home/reynaldoeg/Documents/cron-bash/
+``` 
+La siguiente línea hace un commit 
+```
+git commit -am "`date +'%F %T'`"
+``` 
+La última hace el push a github
+```
+git push
+``` 
+
+
 ----------
 
-## Crontab
 
-<img src="http://blog.paolorossi.net/content/images/2017/07/linux-daemon-600.png" width="300">
+## Crontab
 
 ### Introducción
 Cron es un proceso del sistema (daemon) que se utiliza para ejecutar las tareas deseadas (en segundo plano) en los momentos designados.
@@ -91,6 +112,7 @@ Se puede usar un asterisco (*) para cada instancia (cada hora, cada día laborab
 01 04 * * * /usr/bin/algundirectorio/alguncomando
 ```
 El ejemplo anterior ejecutará  /usr/bin/algundirectorio/alguncomando a las 4:01 am todos los días de cada mes.
+
 Los valores separados por comas se pueden usar para ejecutar más de una instancia de un comando en particular dentro de un período de tiempo. Los valores separados por guiones se pueden usar para ejecutar un comando continuamente.
 ```
 01,31 04,05 1-15 1,6 * /usr/bin/algundirectorio/alguncomando
