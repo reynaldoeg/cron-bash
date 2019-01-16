@@ -19,6 +19,8 @@ git push
 
 ## Crontab
 
+<img src="http://blog.paolorossi.net/content/images/2017/07/linux-daemon-600.png" width="300">
+
 ### Introducción
 Cron es un proceso del sistema (daemon) que se utiliza para ejecutar las tareas deseadas (en segundo plano) en los momentos designados.
 
