@@ -15,17 +15,40 @@ git commit -am "`date +'%F %T'` reyes"
 git push
 ```
 
-
 ----------
-
 
 ## Crontab
 
-Comando para editar los crones
+### Introducción
+Cron es un proceso del sistema (daemon) que se utiliza para ejecutar las tareas deseadas (en segundo plano) en los momentos designados.
+
+Un archivo crontab es un archivo de texto simple que contiene una lista de comandos destinados a ejecutarse en momentos específicos. Se edita utilizando el comando crontab. Los comandos en el archivo crontab (y sus tiempos de ejecución) son verificados por el proceso cron, que los ejecuta en el fondo del sistema.
+
+Cada usuario (incluyendo root) tiene un archivo crontab. El proceso cron comprueba el archivo crontab de un usuario independientemente de si el usuario está realmente conectado al sistema o no.
+
+Para visualizar la ayuda en línea para crontab ingrese:
+
+```
+$ man crontab
+```
+
+### Empezando a usar Cron
+
+Para usar cron para tareas destinadas a ejecutarse solo para su perfil de usuario, agregue entradas al archivo crontab de su propio usuario. Para editar el archivo crontab ingrese:
+
 ```
 $ crontab -e
 ```
-Se abre el siguiente archivo para poder editar los trabajos:
+Edite el crontab usando el formato descrito en las siguientes secciones.  Para mostrar la ayuda en línea que describe el formato del archivo crontab, ingrese:
+```
+$ man 5 crontab
+```
+Los comandos que normalmente se ejecutan con privilegios administrativos (es decir, generalmente se ejecutan utilizando sudo) deben agregarse a la raíz crontab. Para editar la raíz crontab ingrese:
+```
+$ sudo crontab -e
+```
+### Líneas de Crontab
+Al ejecutar el comando anterior se abre el siguiente archivo para poder editar los trabajos:
 
 ``` 
 # Edit this file to introduce tasks to be run by cron.
@@ -54,3 +77,26 @@ Se abre el siguiente archivo para poder editar los trabajos:
 */15 * * * * /home/reynaldoeg/bin/githubreyes.sh 
 
 ```
+
+Cada línea tiene cinco campos de fecha y hora, seguidos de un comando, seguido de un carácter de nueva línea ('\ n'). Los campos están separados por espacios. Los cinco campos de fecha y hora no pueden contener espacios. Los cinco campos de fecha y hora son los siguientes: minuto (0-59), hora (0-23, 0 = medianoche), día (1-31), mes (1-12), día de la semana (0-6, 0 = domingo).
+```
+01 04 1 1 1 /usr/bin/algundirectorio/alguncomando
+```
+El ejemplo anterior ejecutará /usr/bin/algundirectorio/alguncomando a las 4:01 am del 1 de enero, más todos los lunes de enero.
+
+Se puede usar un asterisco (*) para cada instancia (cada hora, cada día laborable, cada mes, etc.) de un período de tiempo.
+```
+01 04 * * * /usr/bin/algundirectorio/alguncomando
+```
+El ejemplo anterior ejecutará  /usr/bin/algundirectorio/alguncomando a las 4:01 am todos los días de cada mes.
+Los valores separados por comas se pueden usar para ejecutar más de una instancia de un comando en particular dentro de un período de tiempo. Los valores separados por guiones se pueden usar para ejecutar un comando continuamente.
+```
+01,31 04,05 1-15 1,6 * /usr/bin/algundirectorio/alguncomando
+```
+El ejemplo anterior ejecutará /usr/bin/algundirectorio/alguncomando a las 01 y 31 horas después de las 4:00 a.m. y a las 5:00 a.m. del 1 al 15 de enero y junio de cada año.
+
+## Más información
+
+[https://help.ubuntu.com](https://help.ubuntu.com/community/CronHowto)
+
+[https://www.tldp.org](https://www.tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html)
