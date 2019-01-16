@@ -43,6 +43,7 @@ git push
 ## Crontab
 
 ### Introducción
+<img src="http://blog.paolorossi.net/content/images/2017/07/linux-daemon-600.png" width="300">
 Cron es un proceso del sistema (daemon) que se utiliza para ejecutar las tareas deseadas (en segundo plano) en los momentos designados.
 
 Un archivo crontab es un archivo de texto simple que contiene una lista de comandos destinados a ejecutarse en momentos específicos. Se edita utilizando el comando crontab. Los comandos en el archivo crontab (y sus tiempos de ejecución) son verificados por el proceso cron, que los ejecuta en el fondo del sistema.
